@@ -1,0 +1,48 @@
+Joe-edoc
+
+Table of Contents
+I. Overview
+II. How to use
+III. Sample .safej file
+IV. License
+
+I. Overview
+   Joe-edoc is a command line tool for generating html 
+   documentation of java source code with additional 
+   joe-e input. The additional input comes in the form 
+   of .safej files. These files specify which fields, 
+   constructors, and methods are enabled and which are 
+   suppressed in valid joe-e code. Joe-edoc injects 
+   this additional input into javadoc style html pages.
+   The result is an API that looks exactly like the 
+   standard java documentation but with the additional
+   joe-e information
+
+II. How to use
+   Joe-edoc works similarly to javadoc. It is called
+   via the command line with the same options as javadoc,
+   except for the "-doclet" option. All other options 
+   are valid. An example call to joe-edoc is:
+   $cd joe-edoc
+   $./joe-edoc.sh -classpath ~/workspace/myproject/ my.package
+   
+	 One option not included in the javadoc man page is the
+	 ability to specify a directory where safej files are located.
+	 The option is "-safejpath." An example using -safejpath is:
+   $cd joe-edoc
+	 $./joe-edoc.sh -classpath ~/workspace/myproject/ -safejpath ~/safej
+      my.package
+ 
+   For additional options see the javadoc man page.
+
+III. Sample .safej file
+   A .safej file provides additional information to 
+   the joe-edoc application. There should be one .safej
+   file per class and the .safej should be placed in the
+   same directory as the corresponding .java file. An example
+	 is included as String.safej
+
+IV. License
+   This code is distributed under GPL. All pre-existing code
+   was taken from openjdk, also distributed under GPL. see
+   LICENSE for more information.

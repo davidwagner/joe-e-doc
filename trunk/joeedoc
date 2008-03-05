@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# change this to the path to the Joe-E Doc bin directory
+BINDIR=~/proj/joeedoc/bin
+
+javadoc -docletpath $BINDIR -doclet org.joe_e.doclets.JoeEStandard "$@"
