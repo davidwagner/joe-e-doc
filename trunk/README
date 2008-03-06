@@ -1,48 +1,50 @@
-Joe-edoc
+Joe-E Doc
 
 Table of Contents
 I. Overview
-II. How to use
-III. Sample .safej file
+II. Installation
+III. How to use
 IV. License
 
 I. Overview
-   Joe-edoc is a command line tool for generating html 
-   documentation of java source code with additional 
-   joe-e input. The additional input comes in the form 
-   of .safej files. These files specify which fields, 
-   constructors, and methods are enabled and which are 
-   suppressed in valid joe-e code. Joe-edoc injects 
-   this additional input into javadoc style html pages.
-   The result is an API that looks exactly like the 
-   standard java documentation but with the additional
-   joe-e information
+   Joe-E Doc (joeedoc) is a command line tool for generating HTML documentation
+   of Java source code with Joe-E taming information.  This additional input
+   comes in the form of .safej files.  These files specify which reference types
+   (classes, interfaces, enumerations, annotations) and type members 
+   (constructors, methods, fields, enumeration constants, annotation elements)
+   are enabled and which are suppressed for Joe-E programs.  Joe-E Doc
+   integrates this additional information into JavaDoc, resulting in API
+   documentation looks like standard JavaDoc output but with the additional
+   information regarding Joe-E taming decisions.
 
-II. How to use
-   Joe-edoc works similarly to javadoc. It is called
-   via the command line with the same options as javadoc,
-   except for the "-doclet" option. All other options 
-   are valid. An example call to joe-edoc is:
-   $cd joe-edoc
-   $./joe-edoc.sh -classpath ~/workspace/myproject/ my.package
-   
-	 One option not included in the javadoc man page is the
-	 ability to specify a directory where safej files are located.
-	 The option is "-safejpath." An example using -safejpath is:
-   $cd joe-edoc
-	 $./joe-edoc.sh -classpath ~/workspace/myproject/ -safejpath ~/safej
-      my.package
- 
-   For additional options see the javadoc man page.
+II. Installation
+   In order to run the joeedoc wrapper script, one must edit it to
+   specify the absolute path to the Joe-E Doc doclet component.
+   This is the bin directory in the Joe-E Doc download.  Simply
+   change the line beginning BINDIR= to specify this path.  You
+   can then move the joeedoc script to somewhere convenient on
+   your path, such as ~/bin on a Unix system.
 
-III. Sample .safej file
-   A .safej file provides additional information to 
-   the joe-edoc application. There should be one .safej
-   file per class and the .safej should be placed in the
-   same directory as the corresponding .java file. An example
-	 is included as String.safej
+III. How to use
+   Joe-E Doc works similarly to javadoc.  It is invoked on the command line with
+   the same options as javadoc, except that the "-doclet" option cannot be used,
+   as the Joe-E doclet is used.  The general form of an invocation is:
+
+       joeedoc [options] [packages]
+
+   Joe-E Doc adds one command-line option, to specify the path of the
+   safej files specifying taming policy.  This option is "-safejpath" followed by
+   the name of a single directory containing safej files.  While it is customary
+   for the safej files to be arranged in directories reflecting the package
+   hierarchy, this is currently not required.
+
+   The most important of JavaDoc's options is -sourcepath, used to specify the
+   directory containing the classes to document.
+
+   An typical call to joe-edoc would look like:
+   $joeedoc -sourcepath ~/workspace/myproject/ -safejpath ~/safej my.package
 
 IV. License
-   This code is distributed under GPL. All pre-existing code
-   was taken from openjdk, also distributed under GPL. see
-   LICENSE for more information.
+   This code is distributed under GNU General Public License (GPL), as it
+   includes components from OpenJDK that are released by Sun under the GPL.
+   See LICENSE for the complete text of the GPL.
