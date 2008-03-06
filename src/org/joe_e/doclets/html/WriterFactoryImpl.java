@@ -31,7 +31,7 @@ public class WriterFactoryImpl implements WriterFactory {
         this.configuration = configuration;
         // We're going to set the configuration's consumer here
         // because configuration.sourcepath has been set already.
-        System.err.println("***" + configuration.safejpath);
+        // System.err.println("Using safej db from " + configuration.safejpath);
         configuration.consumer = new JoeEDocConsumer(configuration.safejpath);
     }
     
