@@ -1,0 +1,27 @@
+#!/bin/sh
+DEST=~/proj/joeedoc
+
+# Used only for the testing step
+OUTPUTDIR=~/proj/joeedoc-output
+SAFEJPATH=~/joe-e/svn/safej
+SOURCEPATH=~/workspace/Joe-E\ testlib
+PACKAGES=org.joe_e.testlib
+
+if [ -d $DEST ]; then
+    if ( ls -d $DEST/* > /dev/null 2> /dev/null ); then
+	echo Destination $DEST is not empty.  Clear it out first.
+    else
+	cp -r bin joeedoc LICENSE README $DEST
+        cp -r ../safej-library/bin/org/joe_e/safej ${DEST}/bin/org/joe_e/
+	echo Class files and extras copied.
+        svn export src ${DEST}/src
+        svn export ../safej-library/src/org/joe_e/safej ${DEST}/src/org/joe_e/safej
+	echo Source files copied.
+	echo Running joeedoc to test that it works
+	cd $OUTPUTDIR
+	${DEST}/joeedoc -safejpath "$SAFEJPATH" -sourcepath "$SOURCEPATH" $PACKAGES
+    fi
+else
+    echo Destination $DEST does not exist.
+    echo Create it, or change the destination by editing the script.
+fi
